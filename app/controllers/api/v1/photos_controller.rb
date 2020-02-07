@@ -1,8 +1,8 @@
 class Api::V1::PhotosController < ApplicationController
   def index
     @photos = Photo.all
-    render json: @photos
-    # might need to render json: @photos, except: [:created_at, :updated_at] if it's in our seed data
+    # render json: @photos
+    render json: @photos, except: [:created_at, :updated_at]
   end
 
   # def show
