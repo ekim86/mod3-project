@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/name'
   get 'photos/index'
   get 'photos/show'
   get 'photos/create'
