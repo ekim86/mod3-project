@@ -39,15 +39,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
   //once that list is clicked then show that photo enlarged photo detail 
   //should be shown with all attributes
 
-  function showDetails(photo) {
-    const photoDetail = document.getElementById('photo-detail')
-    console.log(photoDetail, "PHOTO DETAILS?")
-    photoDetail.innerHTML = `
+function showDetails(photo) {
+  const photoDetail = document.getElementById('photo-detail')
+  console.log(photoDetail, "PHOTO DETAILS?")
+  photoDetail.innerHTML = `
   <h2>${photo.title}</h2>
-  
-
+  <img class='photo-thumbnail' src="${photo.img_url}"/>
+  <br><br>
+  <p>Description: ${photo.description}</p>
+  <p>Likes: ${photo.likes}</p>
   `
-  } //end of show details 
+
+
+} //end of show details 
 
   photoList.addEventListener('click', function (event) {
     if (event.target.className === 'photo-thumbnail') {
