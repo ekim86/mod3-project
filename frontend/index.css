@@ -3,6 +3,54 @@ body {
   font-family: monospace;
 }
 
+/* 
+.card {
+  text-align: center;
+  border: grey solid 1px;
+  padding: 1rem;
+  width: 15rem;
+  height: 25rem;
+  display: inline-grid;
+  margin: 1rem 2rem;
+  box-shadow: 3px 4px #e04b52
+} */
+
+.photo-thumbnail {
+  justify-self: center;
+  height: 12rem;
+  width: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* body {
+  margin: 0;
+  font-family: monospace;
+}
+
 #toy-header {
   display: flex;
   justify-content: center;
@@ -96,4 +144,4 @@ button:hover {
   font-size: 18px;
   font-family: monospace;
   margin: 3px;
-}
+} */
