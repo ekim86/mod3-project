@@ -53,16 +53,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
     `;
 
   } //end of show details 
-function displayPhotoDetails() {
-  photoList.addEventListener('click', function (event) {
-    if (event.target.className === 'photo-thumbnail') {
-      let photoId = event.target.parentNode.dataset.id;
 
-      fetch(`${photoUrl}/${photoId}`)
+
+  function fetchPhotoDetails(id) {
+    fetch(`${photoUrl}/${id}`)
         .then(resp => resp.json())
         .then(photo => {
           showDetails(photo);
         });
+  }
+
+
+function displayPhotoDetails() {
+  photoList.addEventListener('click', function (event) {
+    if (event.target.className === 'photo-thumbnail') {
+      let photoId = event.target.parentNode.dataset.id;
+      fetchPhotoDetails(photoId)
     }
   }); //closes event listener
 } //end of disphotodetails 
