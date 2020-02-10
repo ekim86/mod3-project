@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (event.target.className === 'photo-thumbnail') {
       let photoId = event.target.parentNode.dataset.id;
 
-      fetch(`${url}/${photoId}`)
+      fetch(`${photoUrl}/${photoId}`)
         .then(resp => resp.json())
         .then(photo => {
           showDetails(photo);
