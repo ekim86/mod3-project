@@ -80,8 +80,11 @@ function detailBtns() {
     if (event.target.className === 'like-btn') {
 
       let likes = event.target.innerText.split(' ')[1];
+      // we got the number that isn't yet a number
       let numLikes = parseInt(likes) + 1;
+      // changed it to a number and added one
       event.target.innerText = `Likes: ${numLikes}`;
+      // making the numLikes equal the innerText of the likes but making sure it is in a string
       // should use event.target.innerText because we are changing the text.
       // cannot just do likes = numLikes
       // let likes = parseInt(event.target.innerText) + 1
