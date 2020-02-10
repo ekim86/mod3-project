@@ -85,7 +85,6 @@ function detailBtns() {
       let numLikes = parseInt(likes) + 1;
       // changed it to a number and added one
       event.target.innerText = `Likes: ${numLikes}`;
-      let newLikes = event.target.innerText
       // making the numLikes equal the innerText of the likes but making sure it is in a string
       // should use event.target.innerText because we are changing the text.
       // cannot just do likes = numLikes
@@ -100,7 +99,7 @@ function detailBtns() {
           "content-type": "application/json",
           accept: "application/json"
         },
-        body: JSON.stringify(newLikes)
+        body: JSON.stringify({likes: numLikes})
       })
 
     }

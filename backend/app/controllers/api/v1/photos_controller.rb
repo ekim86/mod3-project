@@ -10,7 +10,7 @@ class Api::V1::PhotosController < ApplicationController
     render json: @photo
   end
   
-  def update
+  def edit
     @photo = photo.find(params[:id])
     @photo.update(photo_params)
     render json: @photo
