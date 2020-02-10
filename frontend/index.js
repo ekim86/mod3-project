@@ -85,12 +85,24 @@ function detailBtns() {
       let numLikes = parseInt(likes) + 1;
       // changed it to a number and added one
       event.target.innerText = `Likes: ${numLikes}`;
+      let newLikes = event.target.innerText
       // making the numLikes equal the innerText of the likes but making sure it is in a string
       // should use event.target.innerText because we are changing the text.
       // cannot just do likes = numLikes
+      // alternative if we just have a string vv
       // let likes = parseInt(event.target.innerText) + 1
       // event.target.innerText = likes
       // when it's like this => <button class='like-btn'>${photo.likes}</button>
+
+      fetch(`${photoUrl}/${id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json"
+        },
+        body: JSON.stringify(newLikes)
+      })
+
     }
   });  //end of listener
 } //end of detailbtns
