@@ -40,13 +40,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
 //should be shown with all attributes
 
 function showDetails(photo) {
-  const photoDetail = getElementById('photo-detail')
+  const photoDetail = document.getElementById('photo-detail')
   console.log(photoDetail, "PHOTO DETAILS?")
   photoDetail.innerHTML = `
   <h2>${photo.title}</h2>
-  
-
+  <img class='photo-thumbnail' src="${photo.img_url}"/>
+  <br><br>
+  <p>Description: ${photo.description}</p>
+  <p>Likes: ${photo.likes}</p>
   `
+
+
 } //end of show details 
 
 photoList.addEventListener('click', function(event) {
