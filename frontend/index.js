@@ -79,11 +79,14 @@ function detailBtns() {
     let id = photoDetail.dataset.id
     if (event.target.className === 'like-btn') {
 
-      let likes = event.target.innerText.split(' ')[1]
-      let numLikes = parseInt(likes) +1
-      likes.innerText = `Likes: ${numLikes}`
-
-
+      let likes = event.target.innerText.split(' ')[1];
+      let numLikes = parseInt(likes) + 1;
+      event.target.innerText = `Likes: ${numLikes}`;
+      // should use event.target.innerText because we are changing the text.
+      // cannot just do likes = numLikes
+      // let likes = parseInt(event.target.innerText) + 1
+      // event.target.innerText = likes
+      // when it's like this => <button class='like-btn'>${photo.likes}</button>
     }
   })  //end of listener
 } //end of detailbtns
