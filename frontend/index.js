@@ -71,7 +71,8 @@ function detailBtns() {
   photoDetail.addEventListener('click', function(event) {
     if (event.target.className === 'like-btn')
     console.log(event.target.className, "likebtn??")
-    let likes = 
+    let likesId = event.target.dataset.id
+    console.log("likes id?", likesId)
 
   })  //end of listener
 } //end of detailbtns
