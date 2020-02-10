@@ -1,8 +1,8 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('Photo App');
 
-  const photoList = document.getElementById('photo-list')
-  const photoDetail = document.getElementById('photo-detail')
+  const photoList = document.getElementById('photo-list');
+  const photoDetail = document.getElementById('photo-detail');
   const photoUrl = 'http://localhost:3000/api/v1/photos';
   // `${photoUrl}/${photo.id}`
   // make sure to cd into backend to run rails s
@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   } // closes function renderphoto
 
   function showDetails(photo) {
-   console.log(photo)
+   console.log(photo);
    photoDetail.dataset.id = photo.id;
     // console.log(photoDetail, "PHOTO DETAILS?")
     photoDetail.innerHTML = `
@@ -68,7 +68,7 @@ function displayPhotoDetails() {
   photoList.addEventListener('click', function (event) {
     if (event.target.className === 'photo-thumbnail') {
       let photoId = event.target.parentNode.dataset.id;
-      fetchPhotoDetails(photoId)
+      fetchPhotoDetails(photoId);
     }
   }); //closes event listener
 } //end of disphotodetails 
@@ -76,19 +76,23 @@ function displayPhotoDetails() {
 
 function detailBtns() {
   photoDetail.addEventListener('click', function(event) {
-    let id = photoDetail.dataset.id
+    let id = photoDetail.dataset.id;
+    // can get the id without having to always do event.target
     if (event.target.className === 'like-btn') {
 
       let likes = event.target.innerText.split(' ')[1];
+      // we got the number that isn't yet a number
       let numLikes = parseInt(likes) + 1;
+      // changed it to a number and added one
       event.target.innerText = `Likes: ${numLikes}`;
+      // making the numLikes equal the innerText of the likes but making sure it is in a string
       // should use event.target.innerText because we are changing the text.
       // cannot just do likes = numLikes
       // let likes = parseInt(event.target.innerText) + 1
       // event.target.innerText = likes
       // when it's like this => <button class='like-btn'>${photo.likes}</button>
     }
-  })  //end of listener
+  });  //end of listener
 } //end of detailbtns
 
 
