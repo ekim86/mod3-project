@@ -2,11 +2,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
   console.log('Photo App');
 
   const photoList = document.getElementById('photo-list')
+  const photoDetail = document.getElementById('photo-detail')
   const photoUrl = 'http://localhost:3000/api/v1/photos';
   // `${photoUrl}/${photo.id}`
   // make sure to cd into backend to run rails s
 
   fetchPhoto();
+  displayPhotoDetails();
+  detailBtns();
 
   function fetchPhoto() {
     fetch(`${photoUrl}`)
@@ -33,7 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   } // closes function renderphoto
 
   function showDetails(photo) {
-    const photoDetail = document.getElementById('photo-detail')
+   
     // console.log(photoDetail, "PHOTO DETAILS?")
     photoDetail.innerHTML = `
       <h2>${photo.title}</h2>
@@ -48,20 +51,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <button class='delete-btn'>Delete</button>
     `;
 
-
   } //end of show details 
-
+function displayPhotoDetails() {
   photoList.addEventListener('click', function (event) {
     if (event.target.className === 'photo-thumbnail') {
       let photoId = event.target.parentNode.dataset.id;
 
-      fetch(`${url}/${photoId}`)
+      fetch(`${photoUrl}/${photoId}`)
         .then(resp => resp.json())
         .then(photo => {
           showDetails(photo);
         });
-
     }
-  });
+  }); //closes event listener
+} //end of disphotodetails 
+
+
+function detailBtns() {
+  photoDetail.addEventListener('click', function(event) {
+    if (event.target.className === 'like-btn')
+    console.log(event.target.className, "likebtn??")
+    let likes = 
+
+  })  //end of listener
+} //end of detailbtns
+
 
 });
