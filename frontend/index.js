@@ -33,25 +33,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
     <br><br>`
     photoList.appendChild(photoDiv)
 
-    
-// console.log(photo);
-  } // closes function renderphoto
+      } // closes function renderphoto
 
 //add event listener to photo list
 //once that list is clicked then show that photo enlarged photo detail 
 //should be shown with all attributes
 
-// function photoDetails() {
+function showDetails(photo) {
+  const photoDetail = getElementById('photo-detail')
+  console.log(photoDetail, "PHOTO DETAILS?")
+  photoDetail.innerHTML = `
+  <h2>${photo.title}</h2>
+  
+
+  `
+} //end of show details 
+
 photoList.addEventListener('click', function(event) {
-  console.log(event.target.className, "event")
   if (event.target.className === 'photo-thumbnail') {
-    console.log(event.target.className, 'thumb?')
-    let photoId = event.target.className.id
-console.log(photoId, "photo id?")
+    let photoId = event.target.parentNode.dataset.id
+
+
+fetch(`http://localhost:3000/api/v1/photos/${photoId}`)
+.then(resp => resp.json())
+.then(photo => {
+  showDetails(photo);
+})
    
   }
 })
-// } end of photodetails function
-
 
 });
