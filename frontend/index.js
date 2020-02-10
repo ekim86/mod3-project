@@ -15,6 +15,4 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }); //closes fetch
 
 
-
-
 });
