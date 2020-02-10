@@ -10,8 +10,8 @@ class Api::V1::PhotosController < ApplicationController
     render json: @photo
   end
   
-  def edit
-    @photo = photo.find(params[:id])
+  def update
+    @photo = Photo.find(params[:id])
     @photo.update(photo_params)
     render json: @photo
   end
@@ -22,7 +22,7 @@ class Api::V1::PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = photo.find(params[:id])
+    @photo = Photo.find(params[:id])
     @photo.destroy
   end
 
