@@ -44,10 +44,15 @@ function showDetails(photo) {
   console.log(photoDetail, "PHOTO DETAILS?")
   photoDetail.innerHTML = `
   <h2>${photo.title}</h2>
-  <img class='photo-thumbnail' src="${photo.img_url}"/>
-  <br><br>
-  <p>Description: ${photo.description}</p>
-  <p>Likes: ${photo.likes}</p>
+  <img src="${photo.img_url}"/>
+  <br>
+  <button class='like-btn'>Likes: ${photo.likes}</button>
+
+  <br>
+  <br>
+  Description:<textarea>${photo.description}</textarea><br><Br>
+  <button class='edit-btn'>Edit Description</button><br>
+  <button class='delete-btn'>Delete</button>
   `
 
 
