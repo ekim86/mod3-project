@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (event.target.className === 'photo-thumbnail') {
       let photoId = event.target.parentNode.dataset.id;
 
-      fetch(`http://localhost:3000/api/v1/photos/${photoId}`)
+      fetch(`${url}/${photoId}`)
         .then(resp => resp.json())
         .then(photo => {
           showDetails(photo);
