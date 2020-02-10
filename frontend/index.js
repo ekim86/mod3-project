@@ -76,11 +76,14 @@ function displayPhotoDetails() {
 
 function detailBtns() {
   photoDetail.addEventListener('click', function(event) {
-    console.log(photoDetail.dataset.id, 'dataset')
-    if (event.target.className === 'like-btn')
-    // console.log(event.target.className, "likebtn??")
-    // let likes = 
+    let id = photoDetail.dataset.id
+    if (event.target.className === 'like-btn') {
 
+      let likes = event.target.innerText.split(' ')[1]
+      let numLikes = parseInt(likes) +1
+      likes.innerText = numLikes
+
+    }
   })  //end of listener
 } //end of detailbtns
 
