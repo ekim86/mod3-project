@@ -15,19 +15,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
       .then((photos) => {
         // console.log(photos);
         photos.forEach(photo =>
-          console.log(photo));
-        // renderPhoto(photo);
+          // console.log(photo));
+        renderPhoto(photo));
       }); //closes fetch
   } // closes function fetchphotos
 
 
 
   function renderPhoto(photo) {
-    const photoList = document.getElementsById('photo-list')
-    const photoDiv = document.createElement('div')
-    photoDiv.dataset.id = photo.id
+    const photoList = document.getElementById('photo-list');
+    const photoDiv = document.createElement('div');
+    photoDiv.dataset.id = photo.id;
     photoDiv.innerHTML = `
-    ${photo.title}`
+    ${photo.title}`;
+    photoList.appendChild(photoDiv);
     
 // console.log(photo);
   } // closes function renderphoto
