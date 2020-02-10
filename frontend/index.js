@@ -36,7 +36,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
   } // closes function renderphoto
 
   function showDetails(photo) {
-   
+   console.log(photo)
+   photoDetail.dataset.id = photo.id;
     // console.log(photoDetail, "PHOTO DETAILS?")
     photoDetail.innerHTML = `
       <h2>${photo.title}</h2>
@@ -69,9 +70,10 @@ function displayPhotoDetails() {
 
 function detailBtns() {
   photoDetail.addEventListener('click', function(event) {
+    console.log(photoDetail.dataset.id, 'dataset')
     if (event.target.className === 'like-btn')
     console.log(event.target.className, "likebtn??")
-    let likes = 
+    // let likes = 
 
   })  //end of listener
 } //end of detailbtns
