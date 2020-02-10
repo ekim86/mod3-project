@@ -25,13 +25,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   function renderPhoto(photo) {
 
-    const photoDiv = document.createElement('div')
-    photoDiv.className = 'photo-thumbnail'
-    photoDiv.dataset.id = photo.id
+    const photoDiv = document.createElement('div');
+    photoDiv.className = 'photo-thumbnail';
+    photoDiv.dataset.id = photo.id;
     photoDiv.innerHTML = `
     <img class='photo-thumbnail' src="${photo.img_url}"/>
-    <br><br>`
-    photoList.appendChild(photoDiv)
+    <br><br>`;
+    photoList.appendChild(photoDiv);
 
   } // closes function renderphoto
 
@@ -39,10 +39,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
   //once that list is clicked then show that photo enlarged photo detail 
   //should be shown with all attributes
 
-function showDetails(photo) {
-  const photoDetail = document.getElementById('photo-detail')
-  console.log(photoDetail, "PHOTO DETAILS?")
-  photoDetail.innerHTML = `
+  function showDetails(photo) {
+    const photoDetail = document.getElementById('photo-detail')
+    // console.log(photoDetail, "PHOTO DETAILS?")
+    photoDetail.innerHTML = `
   <h2>${photo.title}</h2>
   <img src="${photo.img_url}"/>
   <br>
@@ -53,23 +53,22 @@ function showDetails(photo) {
   Description:<textarea>${photo.description}</textarea><br><Br>
   <button class='edit-btn'>Edit Description</button><br>
   <button class='delete-btn'>Delete</button>
-  `
+  `;
 
 
-} //end of show details 
+  } //end of show details 
 
   photoList.addEventListener('click', function (event) {
     if (event.target.className === 'photo-thumbnail') {
-      let photoId = event.target.parentNode.dataset.id
-
+      let photoId = event.target.parentNode.dataset.id;
 
       fetch(`http://localhost:3000/api/v1/photos/${photoId}`)
         .then(resp => resp.json())
         .then(photo => {
           showDetails(photo);
-        })
+        });
 
     }
-  })
+  });
 
 });
