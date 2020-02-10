@@ -26,12 +26,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
   function renderPhoto(photo) {
 
     const photoDiv = document.createElement('div')
-    photoDiv.className = 'photo-thumbnail'
-    photoDiv.dataset.id = photo.id
+    photoDiv.className = 'photo-thumbnail';
+    photoDiv.dataset.id = photo.id;
     photoDiv.innerHTML = `
-    ${photo.title}<br>
-    <img src="${photo.img_url}">`
-    photoList.appendChild(photoDiv)
+    <img src="${photo.img_url}"><br><br>
+    `;
+    photoList.appendChild(photoDiv);
 
     
 // console.log(photo);
@@ -42,10 +42,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 //should be shown with all attributes
 
 // function photoDetails() {
-photoList.addEventListener('click', function(event) {
-  if (event.target.className === 'photo-list')
-  console.dir(event.target.childNodes)
-  console.log(photoList, "photo list")
+photoList.addEventListener('click', function(e) {
+  console.log(e.target.className)
+    // if(e.target.className === 'photo-thumbnail') {
+    // let id = e.target.id;
+
+    console.dir(e.target, 'id?')
+
+  // }
+
+ 
 })
 // } end of photodetails function
 
