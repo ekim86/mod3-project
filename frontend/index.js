@@ -81,7 +81,8 @@ function detailBtns() {
 
       let likes = event.target.innerText.split(' ')[1]
       let numLikes = parseInt(likes) +1
-      likes.innerText = numLikes
+      likes.innerText = `Likes: ${numLikes}`
+
 
     }
   })  //end of listener
