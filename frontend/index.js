@@ -46,8 +46,8 @@ photoList.addEventListener('click', function(event) {
   console.log(event.target.className, "event")
   if (event.target.className === 'photo-thumbnail') {
     console.log(event.target.className, 'thumb?')
-    let photoId = event.target.className.id
-console.log(photoId, "photo id?")
+    let photoId = event.target.className
+console.dir(photoId, "photo id?")
    
   }
 })
