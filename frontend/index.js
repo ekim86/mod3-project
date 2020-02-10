@@ -29,8 +29,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     photoDiv.className = 'photo-thumbnail'
     photoDiv.dataset.id = photo.id
     photoDiv.innerHTML = `
-    ${photo.title}<br>
-    <img src="${photo.img_url}">`
+    <img class='photo-thumbnail' src="${photo.img_url}"/>
+    <br><br>`
     photoList.appendChild(photoDiv)
 
     
@@ -43,9 +43,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 // function photoDetails() {
 photoList.addEventListener('click', function(event) {
-  if (event.target.className === 'photo-list')
-  console.dir(event.target.childNodes)
-  console.log(photoList, "photo list")
+  console.log(event.target.className, "event")
+  if (event.target.className === 'photo-thumbnail') {
+    console.log(event.target.className, 'thumb?')
+    let photoId = event.target.className.id
+console.log(photoId, "photo id?")
+   
+  }
 })
 // } end of photodetails function
 
