@@ -5,15 +5,26 @@ window.addEventListener('DOMContentLoaded', (event) => {
   // `${photoUrl}/${photo.id}`
   // make sure to cd into backend to run rails s
 
+  fetchImage();
 
-  fetch(`${photoUrl}`)
-  .then((response) => {
-    return response.json();
-  })
-  .then((myJson) => {
-    console.log(myJson);
-  }); //closes fetch
+  function fetchImage() {
+    fetch(`${photoUrl}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((images) => {
+        // console.log(images);
+        images.forEach(image =>
+          console.log(image));
+        // renderImage(image);
+      }); //closes fetch
+  } // closes function fetchImages
 
+
+
+  function renderImage(image) {
+// console.log(image);
+  } // closes function renderimage
 
 
 
