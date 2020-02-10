@@ -22,9 +22,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   } // closes function fetchphotos
 
 
-
   function renderPhoto(photo) {
-
     const photoDiv = document.createElement('div');
     photoDiv.className = 'photo-thumbnail';
     photoDiv.dataset.id = photo.id;
@@ -32,28 +30,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
     <img class='photo-thumbnail' src="${photo.img_url}"/>
     <br><br>`;
     photoList.appendChild(photoDiv);
-
   } // closes function renderphoto
-
-  //add event listener to photo list
-  //once that list is clicked then show that photo enlarged photo detail 
-  //should be shown with all attributes
 
   function showDetails(photo) {
     const photoDetail = document.getElementById('photo-detail')
     // console.log(photoDetail, "PHOTO DETAILS?")
     photoDetail.innerHTML = `
-  <h2>${photo.title}</h2>
-  <img src="${photo.img_url}"/>
-  <br>
-  <button class='like-btn'>Likes: ${photo.likes}</button>
+      <h2>${photo.title}</h2>
+      <img src="${photo.img_url}"/>
+      <br>
+      <button class='like-btn'>Likes: ${photo.likes}</button>
 
-  <br>
-  <br>
-  Description:<textarea>${photo.description}</textarea><br><Br>
-  <button class='edit-btn'>Edit Description</button><br>
-  <button class='delete-btn'>Delete</button>
-  `;
+      <br>
+      <br>
+      Description:<textarea>${photo.description}</textarea><br><Br>
+      <button class='edit-btn'>Edit Description</button><br>
+      <button class='delete-btn'>Delete</button>
+    `;
 
 
   } //end of show details 
