@@ -25,14 +25,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
   function renderPhoto(photo) {
     const photoList = document.getElementById('photo-list')
     const photoDiv = document.createElement('div')
+    photoDiv.className = 'photo-thumbnail'
+    photoDiv.id = 'card'
     photoDiv.dataset.id = photo.id
     photoDiv.innerHTML = `
-    ${photo.title}`
+    ${photo.title}<br>
+    <img src="${photo.img_url}">`
     photoList.appendChild(photoDiv)
+
     
 // console.log(photo);
   } // closes function renderphoto
 
-
+//add event listener to photo list
 
 });
