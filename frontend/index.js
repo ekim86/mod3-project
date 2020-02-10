@@ -5,32 +5,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
   // `${photoUrl}/${photo.id}`
   // make sure to cd into backend to run rails s
 
-  fetchImage();
+  fetchPhoto();
 
-  function fetchImage() {
+  function fetchPhoto() {
     fetch(`${photoUrl}`)
       .then((response) => {
         return response.json();
       })
-      .then((images) => {
-        // console.log(images);
-        images.forEach(image =>
-          console.log(image));
-        // renderImage(image);
+      .then((photos) => {
+        // console.log(photos);
+        photos.forEach(photo =>
+          console.log(photo));
+        // renderphoto(photo);
       }); //closes fetch
-  } // closes function fetchImages
+  } // closes function fetchphotos
 
 
 
-  function renderImage(image) {
-    const imageList = document.getElementsById('image-list')
-    const imageDiv = document.createElement('div')
-    imageDiv.dataset.id = image.id
-    imageDiv.innerHTML = `
-    ${image.title}`
-    )
-// console.log(image);
-  } // closes function renderimage
+  function renderPhoto(photo) {
+    const photoList = document.getElementsById('photo-list')
+    const photoDiv = document.createElement('div')
+    photoDiv.dataset.id = photo.id
+    photoDiv.innerHTML = `
+    ${photo.title}`
+    
+// console.log(photo);
+  } // closes function renderphoto
 
 
 
