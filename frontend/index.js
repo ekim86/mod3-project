@@ -23,6 +23,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   function renderImage(image) {
+    const imageList = document.getElementsById('image-list')
+    const imageDiv = document.createElement('div')
+    imageDiv.dataset.id = image.id
+    imageDiv.innerHTML = `
+    ${image.title}`
+    )
 // console.log(image);
   } // closes function renderimage
 
