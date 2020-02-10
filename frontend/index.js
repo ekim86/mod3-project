@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('Photo App');
 
+  const photoList = document.getElementById('photo-list')
   const photoUrl = 'http://localhost:3000/api/v1/photos';
   // `${photoUrl}/${photo.id}`
   // make sure to cd into backend to run rails s
@@ -23,10 +24,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   function renderPhoto(photo) {
-    const photoList = document.getElementById('photo-list')
+
     const photoDiv = document.createElement('div')
     photoDiv.className = 'photo-thumbnail'
-    photoDiv.id = 'card'
     photoDiv.dataset.id = photo.id
     photoDiv.innerHTML = `
     ${photo.title}<br>
@@ -38,5 +38,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
   } // closes function renderphoto
 
 //add event listener to photo list
+//once that list is clicked then show that photo enlarged photo detail 
+//should be shown with all attributes
+
+// function photoDetails() {
+photoList.addEventListener('click', function(event) {
+  if (event.target.className === 'photo-list')
+  console.dir(event.target.childNodes)
+  console.log(photoList, "photo list")
+})
+// } end of photodetails function
+
 
 });
