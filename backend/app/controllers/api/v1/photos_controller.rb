@@ -17,6 +17,7 @@ class Api::V1::PhotosController < ApplicationController
   end
 
   def create
+
     @photo = Photo.create!(photo_params)
     render json: @photo
   end
