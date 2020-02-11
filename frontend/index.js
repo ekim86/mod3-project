@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <br>
       <br>
       Description:<textarea>${photo.description}</textarea><br><Br>
-      <button class='edit-btn'>Edit Description</button><br>
+      <button class='save-btn'>Save Description</button><br>
       <button class='delete-btn'>Delete</button>
     `;
 
@@ -100,9 +100,24 @@ function detailBtns() {
           accept: "application/json"
         },
         body: JSON.stringify({likes: numLikes})
-      })
+      });
 
     } // closes if
+
+    if (event.target.className === 'save-btn'){
+      console.log(event.target);
+      const textarea = event.target.parentNode.querySelector('textarea');
+      const newTextarea = textarea.value;
+
+      fetch(`${photoUrl}/${id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json"
+        },
+        body: JSON.stringify({'description': newTextarea})
+      });
+    } // closes if for save-btn
 
 
 
