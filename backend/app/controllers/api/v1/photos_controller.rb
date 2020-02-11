@@ -21,9 +21,10 @@ class Api::V1::PhotosController < ApplicationController
     render json: @photo
   end
 
-  def delete
+  def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
+    render json: @photo
   end
 
   private

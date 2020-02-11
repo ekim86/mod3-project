@@ -116,7 +116,25 @@ function detailBtns() {
         body: JSON.stringify({"description": desc})
       })
     }
+    if (event.target.className === 'delete-btn') {
 
+      photoDetail.remove()
+      let photoThumbnails = document.getElementsByClassName('photo-thumbnail')
+      Array.from(photoThumbnails).forEach(photo => {
+      if (photo.dataset.id === id) {
+        photo.remove()
+      }
+      })
+  
+    }
+
+    fetch(`${photoUrl}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json"
+      }
+    });
 
   });  //end of listener
 } //end of detailbtns
