@@ -1,13 +1,16 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('Photo App');
+
   const photoList = document.getElementById('photo-list');
   const photoDetail = document.getElementById('photo-detail');
   const photoUrl = 'http://localhost:3000/api/v1/photos';
   // `${photoUrl}/${photo.id}`
   // make sure to cd into backend to run rails s
+  
   fetchPhoto();
   displayPhotoDetails();
   detailBtns();
+
   function fetchPhoto() {
     fetch(`${photoUrl}`)
       .then((response) => {
@@ -20,6 +23,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
           renderPhoto(photo));
       }); //closes fetch
   } // closes function fetchphotos
+
+
   function renderPhoto(photo) {
     const photoDiv = document.createElement('div');
     photoDiv.className = 'photo-thumbnail';
@@ -29,6 +34,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     <br><br>`;
     photoList.appendChild(photoDiv);
   } // closes function renderphoto
+
+
   function showDetails(photo) {
    console.log(photo);
    photoDetail.dataset.id = photo.id;
@@ -45,22 +52,31 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <button class='delete-btn'>Delete</button>
     `;
   } //end of show details 
+
+
   function fetchPhotoDetails(id) {
     fetch(`${photoUrl}/${id}`)
         .then(resp => resp.json())
         .then(photo => {
           showDetails(photo);
         });
-  }
+  } // closes fetchPhoto Details
+
+
 function displayPhotoDetails() {
+
   photoList.addEventListener('click', function (event) {
     if (event.target.className === 'photo-thumbnail') {
       let photoId = event.target.parentNode.dataset.id;
       fetchPhotoDetails(photoId);
     }
   }); //closes event listener
+
 } //end of disphotodetails 
+
+
 function detailBtns() {
+
   photoDetail.addEventListener('click', function(event) {
     let id = photoDetail.dataset.id;
     // can get the id without having to always do event.target
@@ -102,7 +118,7 @@ function detailBtns() {
 
     if (event.target.className === 'delete-btn') {
       photoDetail.remove();
-      let photoThumbnails = document.getElementsByClassName('photo-thumbnail')
+      let photoThumbnails = document.getElementsByClassName('photo-thumbnail');
       Array.from(photoThumbnails).forEach(photo => {
       if (photo.dataset.id === id) {
         photo.remove();
@@ -121,4 +137,4 @@ function detailBtns() {
 
 } //end of detailbtns
 
-});
+}); // closes dom
