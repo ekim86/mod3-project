@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <br>
       <br>
       Description:<textarea>${photo.description}</textarea><br><Br>
-      <button class='edit-btn'>Save Description</button><br>
+      <button class='save-btn'>Save Description</button><br>
       <button class='delete-btn'>Delete</button>
     `;
 
@@ -103,7 +103,7 @@ function detailBtns() {
       })
 
     }
-    if (event.target.className === 'edit-btn') {
+    if (event.target.className === 'save-btn') {
       let desc = document.querySelector('textarea').value
       // console.log(desc, "description") WORKS!
 
@@ -116,6 +116,8 @@ function detailBtns() {
         body: JSON.stringify({"description": desc})
       })
     }
+
+
   });  //end of listener
 } //end of detailbtns
 
