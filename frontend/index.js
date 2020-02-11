@@ -102,12 +102,10 @@ function detailBtns() {
         body: JSON.stringify({likes: numLikes})
       });
 
-    } // closes if
-
-    if (event.target.className === 'save-btn'){
-      console.log(event.target);
-      const textarea = event.target.parentNode.querySelector('textarea');
-      const newTextarea = textarea.value;
+    }
+    if (event.target.className === 'save-btn') {
+      let desc = document.querySelector('textarea').value
+      // console.log(desc, "description") WORKS!
 
       fetch(`${photoUrl}/${id}`, {
         method: "PATCH",
@@ -115,11 +113,29 @@ function detailBtns() {
           "content-type": "application/json",
           accept: "application/json"
         },
-        body: JSON.stringify({'description': newTextarea})
-      });
-    } // closes if for save-btn
+        body: JSON.stringify({"description": desc})
+      })
+    }
+    if (event.target.className === 'delete-btn') {
 
+      photoDetail.remove()
+      let photoThumbnails = document.getElementsByClassName('photo-thumbnail')
+      Array.from(photoThumbnails).forEach(photo => {
+      if (photo.dataset.id === id) {
+        photo.remove()
+      }
+      })
+  
+    }
 
+    fetch(`${photoUrl}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json"
+      }
+    });
+  } // closes if
 
   });  //end of listener
 } //end of detailbtns
