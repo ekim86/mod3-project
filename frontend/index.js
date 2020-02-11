@@ -102,7 +102,10 @@ function detailBtns() {
         body: JSON.stringify({likes: numLikes})
       })
 
-    }
+    } // closes if
+
+
+
   });  //end of listener
 } //end of detailbtns
 
