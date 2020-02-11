@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const photoUrl = 'http://localhost:3000/api/v1/photos';
   // `${photoUrl}/${photo.id}`
   // make sure to cd into backend to run rails s
-
+  
   fetchPhoto();
   displayPhotoDetails();
   detailBtns();
@@ -35,6 +35,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     photoList.appendChild(photoDiv);
   } // closes function renderphoto
 
+
   function showDetails(photo) {
    console.log(photo);
    photoDetail.dataset.id = photo.id;
@@ -44,14 +45,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <img src="${photo.img_url}"/>
       <br>
       <button class='like-btn'>Likes: ${photo.likes}</button>
-
       <br>
       <br>
       Description:<textarea>${photo.description}</textarea><br><Br>
       <button class='save-btn'>Save Description</button><br>
       <button class='delete-btn'>Delete</button>
     `;
-
   } //end of show details 
 
 
@@ -61,25 +60,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
         .then(photo => {
           showDetails(photo);
         });
-  }
+  } // closes fetchPhoto Details
 
 
 function displayPhotoDetails() {
+
   photoList.addEventListener('click', function (event) {
     if (event.target.className === 'photo-thumbnail') {
       let photoId = event.target.parentNode.dataset.id;
       fetchPhotoDetails(photoId);
     }
   }); //closes event listener
+
 } //end of disphotodetails 
 
 
 function detailBtns() {
+
   photoDetail.addEventListener('click', function(event) {
     let id = photoDetail.dataset.id;
     // can get the id without having to always do event.target
     if (event.target.className === 'like-btn') {
-
       let likes = event.target.innerText.split(' ')[1];
       // we got the number that isn't yet a number
       let numLikes = parseInt(likes) + 1;
@@ -92,7 +93,6 @@ function detailBtns() {
       // let likes = parseInt(event.target.innerText) + 1
       // event.target.innerText = likes
       // when it's like this => <button class='like-btn'>${photo.likes}</button>
-
       fetch(`${photoUrl}/${id}`, {
         method: "PATCH",
         headers: {
@@ -100,13 +100,12 @@ function detailBtns() {
           accept: "application/json"
         },
         body: JSON.stringify({likes: numLikes})
-      })
+      });
+    } // closes like if
 
-    }
     if (event.target.className === 'save-btn') {
-      let desc = document.querySelector('textarea').value
+      let desc = document.querySelector('textarea').value;
       // console.log(desc, "description") WORKS!
-
       fetch(`${photoUrl}/${id}`, {
         method: "PATCH",
         headers: {
@@ -114,18 +113,17 @@ function detailBtns() {
           accept: "application/json"
         },
         body: JSON.stringify({"description": desc})
-      })
-    }
-    if (event.target.className === 'delete-btn') {
+      });
+    } // closes save if
 
-      photoDetail.remove()
-      let photoThumbnails = document.getElementsByClassName('photo-thumbnail')
+    if (event.target.className === 'delete-btn') {
+      photoDetail.remove();
+      let photoThumbnails = document.getElementsByClassName('photo-thumbnail');
       Array.from(photoThumbnails).forEach(photo => {
       if (photo.dataset.id === id) {
-        photo.remove()
+        photo.remove();
       }
-      })
-      
+      });
       fetch(`${photoUrl}/${id}`, {
         method: "DELETE",
         headers: {
@@ -133,12 +131,11 @@ function detailBtns() {
           accept: "application/json"
         }
       });
-    }
-
+    } // closes delete if
 
   });  //end of listener
-} //end of detailbtns
 
+} //end of detailbtns
 
 // find ul class
 // create a form element to be able to add new photo
@@ -146,6 +143,4 @@ function detailBtns() {
 //post to api
 
 
-
-
-});
+}); // closes dom
