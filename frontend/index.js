@@ -125,19 +125,27 @@ function detailBtns() {
         photo.remove()
       }
       })
-  
+      
+      fetch(`${photoUrl}/${id}`, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json"
+        }
+      });
     }
 
-    fetch(`${photoUrl}/${id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-        accept: "application/json"
-      }
-    });
 
   });  //end of listener
 } //end of detailbtns
+
+
+// find ul class
+// create a form element to be able to add new photo
+// input includes description, title and url, submit button 
+//post to api
+
+
 
 
 });
