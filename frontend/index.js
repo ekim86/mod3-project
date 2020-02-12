@@ -2,8 +2,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
   console.log('Photo App');
   
   const photoList = document.getElementById('photo-list');
-  const photoThumnailArea = document.createElement('div');
-  photoList.appendChild(photoThumnailArea);
+  const photoThumbnailArea = document.createElement('div');
+  photoList.appendChild(photoThumbnailArea);
   const photoDetail = document.getElementById('photo-detail');
   const photoUrl = 'http://localhost:3000/api/v1/photos';
   const allPhotos =[];
@@ -146,7 +146,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <button class="new-photo-btn" value="submit">Add New Photo</button>
       `;
 
-    photoList.append(form);
+    photoList.prepend(form);
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
