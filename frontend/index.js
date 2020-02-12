@@ -179,7 +179,7 @@ function login() {
   `
   usernameDiv.addEventListener('click', function(event) {
     if (event.target.className === 'login-btn') {
-      let username = event.target.parentNode
+      let username = event.target.parentNode.children[0].value;
       //then we want to show that user's pictures
       console.dir(username, 'username?')
     }
