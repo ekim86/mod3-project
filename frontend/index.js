@@ -115,21 +115,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
       } // closes save if
 
       if (event.target.className === 'delete-btn') {
-        photoDetail.innerHTML = "";
-        // const photoList = document.getElementsByClassName('photo-thumbnail');
-        Array.from(photoList).forEach(photo => {
-          if (photo.dataset.id === id) {
-            photo.remove();
-            // photoImgUrl.remove();
-          }
-        });
+        
         fetch(`${photoUrl}/${id}`, {
           method: "DELETE",
           headers: {
             "content-type": "application/json",
             accept: "application/json"
           }
-        });
+        })
+        .then(resp => resp.json())
+        .then(() => {
+          photoDetail.innerHTML = "";
+          const thumbNail = photoThumbnailArea.querySelector(`[data-id='${id}']`);
+          thumbNail.remove();
+        }); //closes fetch delete
       } // closes delete if
 
     });  //end of listener

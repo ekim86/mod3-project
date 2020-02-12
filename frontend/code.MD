@@ -1,3 +1,5 @@
+<!-- <script src="index.js"></script> -->
+
 # CODE WITH COMMENTS
 
 window.addEventListener('DOMContentLoaded', (event) => {
