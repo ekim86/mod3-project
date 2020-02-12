@@ -192,7 +192,7 @@ function login() {
       .then(user => {
         console.log(user, 'user?')
         const userPhotos = allPhotos.filter(photo => photo.user_id === user.id)
-        photoList.innerHTML = "";
+        photoThumnailArea.innerHTML = "";
         userPhotos.forEach(photo => renderPhoto(photo))
       })
     }
