@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         photos.forEach(photo => {
           allPhotos.push(photo);
           renderPhoto(photo);
-        })
+        });
           
       }); //closes fetch
   } // closes function fetchphotos
@@ -43,6 +43,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   function showDetails(photo) {
     console.log(photo);
     photoDetail.dataset.id = photo.id;
+    photoDetail.dataset.user_id = photo.user_id;
 
     photoDetail.innerHTML = `
       <h2>${photo.title}</h2>
@@ -63,7 +64,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
       .then(resp => resp.json())
       .then(photo => {
         showDetails(photo);
-        console.log(photo, 'photoooo')
       });
   } // closes fetchPhoto Details
 
@@ -133,11 +133,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   } //end of detailbtns
 
-  // find ul class
-
 
   function addNewPhoto() {
     const form = document.createElement('form');
+
+    // form.dataset.id = 
     form.innerHTML = `
       <input type="text" name="title" placeholder="Photo Title">
       <input type=text" name="img_url" placeholder="Photo Link">
@@ -171,34 +171,37 @@ window.addEventListener('DOMContentLoaded', (event) => {
         renderPhoto(photo);
       }); // pessimistic rendering 
 
-
     }); //end of new form
-  }
 
-function login() {
-  const title = document.querySelector('#title');
-  const usernameDiv = document.createElement('div');
-  usernameDiv.innerHTML = `
-  <input type="text" class='login' name="username" placeholder="Username">
-  <button class='login-btn'>Login</button>
-  `;
-  usernameDiv.addEventListener('click', function(event) {
-    if (event.target.className === 'login-btn') {
-      let username = event.target.parentNode.children[0].value;
+  } // closes addNewPhoto
 
-      //then we want to show that user's pictures
-      fetch(`http://localhost:3000/api/v1/users/${username}`)
-      .then(resp => resp.json())
-      .then(user => {
-        console.log(user, 'user?')
-        const userPhotos = allPhotos.filter(photo => photo.user_id === user.id)
-        photoThumnailArea.innerHTML = "";
-        userPhotos.forEach(photo => renderPhoto(photo))
-      })
-    }
-  })
-  title.appendChild(usernameDiv);
-}
+
+  function login() {
+    const title = document.querySelector('#title');
+    const usernameDiv = document.createElement('div');
+    usernameDiv.innerHTML = `
+    <input type="text" class='login' name="username" placeholder="Username">
+    <button class='login-btn'>Login</button>
+    `;
+    usernameDiv.addEventListener('click', function(event) {
+      if (event.target.className === 'login-btn') {
+        let username = event.target.parentNode.children[0].value;
+  
+        //then we want to show that user's pictures
+        fetch(`http://localhost:3000/api/v1/users/${username}`)
+        .then(resp => resp.json())
+        .then(user => {
+          // console.log(user, 'user infoooo');
+          const userPhotos = allPhotos.filter(photo => photo.user_id === user.id);
+          photoThumnailArea.innerHTML = "";
+          userPhotos.forEach(photo => renderPhoto(photo));
+        });
+      }
+    });
+    title.appendChild(usernameDiv);
+  } // closes login
+
+
 
 
 
