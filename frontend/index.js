@@ -1,7 +1,9 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('Photo App');
-
+  
   const photoList = document.getElementById('photo-list');
+  const photoThumnailArea = document.createElement('div');
+  photoList.appendChild(photoThumnailArea);
   const photoDetail = document.getElementById('photo-detail');
   const photoUrl = 'http://localhost:3000/api/v1/photos';
   const allPhotos =[]
@@ -34,11 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     photoImgUrl.src = photo.img_url;
     photoImgUrl.dataset.id = photo.id;
 
-    const photoDiv = document.createElement('div')
-
-    photoList.appendChild(photoDiv)
-    photoDiv.appendChild(photoImgUrl);
-    // photoDiv.innerHTML = `${photoImgUrl}`
+    photoThumnailArea.appendChild(photoImgUrl);
   } // closes function renderphoto
 
 
@@ -139,14 +137,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   function addNewPhoto() {
-    const form = document.createElement('form')
+    const form = document.createElement('form');
     form.innerHTML = `
       <input type="text" name="title" placeholder="Photo Title">
       <input type=text" name="img_url" placeholder="Photo Link">
       <input type="textarea" name="description" placeholder="Description">
       <button class="new-photo-btn" value="submit">Add New Photo</button>
       `;
-    photoList.append(form)
+    photoList.prepend(form);
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -178,12 +176,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 
 function login() {
-  const title = document.querySelector('#title')
-  const usernameDiv = document.createElement('div')
+  const title = document.querySelector('#title');
+  const usernameDiv = document.createElement('div');
   usernameDiv.innerHTML = `
   <input type="text" class='login' name="username" placeholder="Username">
   <button class='login-btn'>Login</button>
-  `
+  `;
   usernameDiv.addEventListener('click', function(event) {
     if (event.target.className === 'login-btn') {
       let username = event.target.parentNode.children[0].value;
@@ -199,14 +197,8 @@ function login() {
       })
     }
   })
-  title.appendChild(usernameDiv)
+  title.appendChild(usernameDiv);
 }
-
-
-
-
-
-
 
 
 
