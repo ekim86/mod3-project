@@ -1,17 +1,17 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('Photo App');
-  
+
   const photoList = document.getElementById('photo-list');
   const photoThumbnailArea = document.createElement('div');
+  photoThumbnailArea.className = 'photo-thumbnail-area';
   photoList.appendChild(photoThumbnailArea);
   const photoDetail = document.getElementById('photo-detail');
   const photoUrl = 'http://localhost:3000/api/v1/photos';
-  const allPhotos =[];
+  const allPhotos = [];
 
   fetchPhoto();
   displayPhotoDetails();
   detailBtns();
-  addNewPhoto();
   login();
 
   function fetchPhoto() {
@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
           // renderPhoto(photo);
           // deleted so it doesn't show up until signed in
         });
-          
+
       }); //closes fetch
   } // closes function fetchphotos
 
@@ -115,11 +115,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
       } // closes save if
 
       if (event.target.className === 'delete-btn') {
-        photoDetail.innerHTML= "";
+        photoDetail.innerHTML = "";
         // const photoList = document.getElementsByClassName('photo-thumbnail');
         Array.from(photoList).forEach(photo => {
           if (photo.dataset.id === id) {
             photo.remove();
+            // photoImgUrl.remove();
           }
         });
         fetch(`${photoUrl}/${id}`, {
@@ -135,7 +136,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   } //end of detailbtns
 
-  
+
   function addNewPhoto() {
     const form = document.createElement('form');
     form.className = 'new-photo-form';
@@ -145,70 +146,69 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <input type="textarea" name="description" placeholder="Description">
       <button class="new-photo-btn" value="submit">Add New Photo</button>
       `;
-
-    // photoList.prepend(form);
-
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      const title = event.target.title.value;
-      const imgUrl = event.target.img_url.value;
-      const description = event.target.description.value;
-      const userId = event.target.dataset.id;
-      console.log(userId, 'userid');
-
-      fetch('http://localhost:3000/api/v1/photos', {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          accept: "application/json"
-        },
-        body: JSON.stringify({
-          "user_id": userId,
-          "title": title,
-          "img_url": imgUrl,
-          "description": description,
-          "likes": 0
+    photoList.prepend(form);
+    
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+    
+        const title = event.target.title.value;
+        const imgUrl = event.target.img_url.value;
+        const description = event.target.description.value;
+        const userId = event.target.dataset.id;
+        console.log(userId, 'userid');
+    
+        fetch('http://localhost:3000/api/v1/photos', {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            accept: "application/json"
+          },
+          body: JSON.stringify({
+            "user_id": userId,
+            "title": title,
+            "img_url": imgUrl,
+            "description": description,
+            "likes": 0
+          })
         })
-      })
-      .then(resp => resp.json())
-      .then(photo => {
-        renderPhoto(photo);
-      }); // pessimistic rendering 
+          .then(resp => resp.json())
+          .then(photo => {
+    
+            renderPhoto(photo);
+          }); // pessimistic rendering 
+      }); //end of new form
 
-    }); //end of new form
-  }
+  } // end of addNewPhoto
 
-function login() {
-  const title = document.querySelector('#title');
-  const usernameDiv = document.createElement('div');
 
-  usernameDiv.innerHTML = `
+
+  function login() {
+    const title = document.querySelector('#title');
+    const usernameDiv = document.createElement('div');
+    usernameDiv.innerHTML = `
   <input type="text" class='login' name="username" placeholder="Username">
   <button class='login-btn'>Login</button>
   `;
-  usernameDiv.addEventListener('click', function(event) {
-    if (event.target.className === 'login-btn') {
-      let username = event.target.parentNode.children[0].value;
+    usernameDiv.addEventListener('click', function (event) {
+      if (event.target.className === 'login-btn') {
+        let username = event.target.parentNode.children[0].value;
 
-      fetch(`http://localhost:3000/api/v1/users/${username}`)
-      .then(resp => resp.json())
-      .then(user => {
-        console.log(user, 'user?');
-        let form = document.getElementsByClassName('new-photo-form')[0];
-        form.dataset.id = user.id;
-        console.log(form, "form?");
-        const userPhotos = allPhotos.filter(photo => photo.user_id === user.id);
-        photoThumbnailArea.innerHTML = "";
-        userPhotos.forEach(photo => renderPhoto(photo));
-      });
-    }
-  });
-  title.appendChild(usernameDiv);
-}
+        fetch(`http://localhost:3000/api/v1/users/${username}`)
+          .then(resp => resp.json())
+          .then(user => {
+            addNewPhoto();
+            let form = document.getElementsByClassName('new-photo-form')[0];
+            form.dataset.id = user.id;
+            const userPhotos = allPhotos.filter(photo => photo.user_id === user.id);
+            photoThumbnailArea.innerHTML = "";
+            userPhotos.forEach(photo => renderPhoto(photo));
+          });
+      }
+    });
+    title.appendChild(usernameDiv);
+    
+  } //closes login
 
-usernameDiv.addEventListener('click', addNewPhoto() => {
-  console.log(usernameDiv, 'hello?')
-});
-  
+
 }); // closes dom
 
