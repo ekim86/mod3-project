@@ -16,9 +16,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         return response.json();
       })
       .then((photos) => {
-        // console.log(photos);
         photos.forEach(photo =>
-          // console.log(photo));
           renderPhoto(photo));
       }); //closes fetch
   } // closes function fetchphotos
@@ -38,7 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   function showDetails(photo) {
     console.log(photo);
     photoDetail.dataset.id = photo.id;
-    // console.log(photoDetail, "PHOTO DETAILS?")
+
     photoDetail.innerHTML = `
       <h2>${photo.title}</h2>
       <img src="${photo.img_url}"/>
@@ -96,7 +94,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
       if (event.target.className === 'save-btn') {
         const desc = document.querySelector('textarea').value;
-        // console.log(desc, "description") WORKS!
         fetch(`${photoUrl}/${id}`, {
           method: "PATCH",
           headers: {
