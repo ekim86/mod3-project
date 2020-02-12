@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const photoList = document.getElementById('photo-list');
   const photoDetail = document.getElementById('photo-detail');
   const photoUrl = 'http://localhost:3000/api/v1/photos';
+  const allPhotos =[]
 
   fetchPhoto();
   displayPhotoDetails();
@@ -17,8 +18,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         return response.json();
       })
       .then((photos) => {
-        photos.forEach(photo =>
-          renderPhoto(photo));
+        photos.forEach(photo => {
+          allPhotos.push(photo);
+          renderPhoto(photo);
+        })
+          
       }); //closes fetch
   } // closes function fetchphotos
 
@@ -30,8 +34,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     photoImgUrl.src = photo.img_url;
     photoImgUrl.dataset.id = photo.id;
 
-    
-    photoList.appendChild(photoImgUrl);
+    const photoDiv = document.createElement('div')
+
+    photoList.appendChild(photoDiv)
+    photoDiv.appendChild(photoImgUrl);
+    // photoDiv.innerHTML = `${photoImgUrl}`
   } // closes function renderphoto
 
 
@@ -180,8 +187,16 @@ function login() {
   usernameDiv.addEventListener('click', function(event) {
     if (event.target.className === 'login-btn') {
       let username = event.target.parentNode.children[0].value;
+
       //then we want to show that user's pictures
-      console.dir(username, 'username?')
+      fetch(`http://localhost:3000/api/v1/users/${username}`)
+      .then(resp => resp.json())
+      .then(user => {
+        console.log(user, 'user?')
+        const userPhotos = allPhotos.filter(photo => photo.user_id === user.id)
+        photoList.innerHTML = "";
+        userPhotos.forEach(photo => renderPhoto(photo))
+      })
     }
   })
   title.appendChild(usernameDiv)
