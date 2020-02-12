@@ -1,4 +1,7 @@
 class Api::V1::PhotosController < ApplicationController
+
+      # before_action :require_login 
+      
   def index
     @photos = Photo.all
     # render json: @photos
