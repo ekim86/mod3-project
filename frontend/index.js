@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         photos.forEach(photo => {
           allPhotos.push(photo);
           renderPhoto(photo);
-        })
+        });
           
       }); //closes fetch
   } // closes function fetchphotos
@@ -43,6 +43,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   function showDetails(photo) {
     // console.log(photo);
     photoDetail.dataset.id = photo.id;
+    photoDetail.dataset.user_id = photo.user_id;
 
     photoDetail.innerHTML = `
       <h2>${photo.title}</h2>
@@ -136,7 +137,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   function addNewPhoto() {
     const form = document.createElement('form');
-    form.className = 'new-photo-form'
+    form.className = 'new-photo-form';
     form.innerHTML = `
       <input type="text" name="title" placeholder="Photo Title">
       <input type=text" name="img_url" placeholder="Photo Link">
@@ -150,6 +151,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       const title = event.target.title.value;
       const imgUrl = event.target.img_url.value;
       const description = event.target.description.value;
+      const userId = event.target.dataset.id;
+      console.log(userId, 'userid');
 
       fetch('http://localhost:3000/api/v1/photos', {
         method: "POST",
@@ -158,6 +161,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
           accept: "application/json"
         },
         body: JSON.stringify({
+          "user_id": userId,
           "title": title,
           "img_url": imgUrl,
           "description": description,
@@ -168,7 +172,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
       .then(photo => {
         renderPhoto(photo);
       }); // pessimistic rendering 
-
 
     }); //end of new form
   }
