@@ -1,3 +1,5 @@
+# CODE WITH COMMENTS
+
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('Photo App');
 
@@ -80,12 +82,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     photoDetail.addEventListener('click', function (event) {
       const id = photoDetail.dataset.id;
-
+      // can get the id without having to always do event.target
       if (event.target.className === 'like-btn') {
         const likes = event.target.innerText.split(' ')[1];
+        // we got the number that isn't yet a number
         const numLikes = parseInt(likes) + 1;
+        // changed it to a number and added one
         event.target.innerText = `Likes: ${numLikes}`;
-
+        // making the numLikes equal the innerText of the likes but making sure it is in a string
+        // should use event.target.innerText because we are changing the text.
+        // cannot just do likes = numLikes
+        // alternative if we just have a string vv
+        // let likes = parseInt(event.target.innerText) + 1
+        // event.target.innerText = likes
+        // when it's like this => <button class='like-btn'>${photo.likes}</button>
         fetch(`${photoUrl}/${id}`, {
           method: "PATCH",
           headers: {
@@ -131,24 +141,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
   } //end of detailbtns
 
   // find ul class
-
+  // create a form element to be able to add new photo
+  // input includes description, title and url, submit button 
+  //post to api
 
   function addNewPhoto() {
     const form = document.createElement('form')
     form.innerHTML = `
-      <input type="text" name="title" placeholder="Photo Title">
-      <input type=text" name="img_url" placeholder="Photo Link">
-      <input type="textarea" name="description" placeholder="Description">
-      <button class="new-photo-btn" value="submit">Add New Photo</button>
-      `;
+<input type="text" name="title" placeholder="Photo Title">
+<input type=text" name="img_url" placeholder="Photo Link">
+<input type="textarea" name="description" placeholder="Description">
+<button class="new-photo-btn" value="submit">Add New Photo</button>
+`
     photoList.append(form)
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      const title = event.target.title.value;
-      const imgUrl = event.target.img_url.value;
-      const description = event.target.description.value;
-      // const title = form.title.value
+      const title = event.target.title.value
+      const imgUrl = event.target.img_url.value
+      const description = event.target.description.value
+      // let title = form.title.value
+      // const newPhotoObj = { title, imgUrl, description}
+      // console.log(newPhotoObj, 'does this create a new obj?')
 
       fetch('http://localhost:3000/api/v1/photos', {
         method: "POST",
@@ -166,7 +180,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       .then(resp => resp.json())
       .then(photo => {
         renderPhoto(photo);
-      }); // pessimistic rendering 
+      }) // pessimistic rendering 
 
 
     }); //end of new form
