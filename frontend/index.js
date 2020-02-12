@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   displayPhotoDetails();
   detailBtns();
   addNewPhoto();
+  login();
 
   function fetchPhoto() {
     fetch(`${photoUrl}`)
@@ -169,7 +170,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }); //end of new form
   }
 
-
+function login() {
+  const title = document.querySelector('#title')
+  const usernameDiv = document.createElement('div')
+  usernameDiv.innerHTML = `
+  <input type="text" class='login' name="username" placeholder="Username">
+  <button class='login-btn'>Login</button>
+  `
+  usernameDiv.addEventListener('click', function(event) {
+    if (event.target.className === 'login-btn') {
+      let username = event.target.parentNode
+      //then we want to show that user's pictures
+      console.dir(username, 'username?')
+    }
+  })
+  title.appendChild(usernameDiv)
+}
 
 
 
