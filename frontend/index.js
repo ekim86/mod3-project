@@ -1,3 +1,6 @@
+
+
+
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('Photo App');
 
@@ -120,7 +123,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         Array.from(photoList).forEach(photo => {
           if (photo.dataset.id === id) {
             photo.remove();
-            // photoImgUrl.remove();
           }
         });
         fetch(`${photoUrl}/${id}`, {
