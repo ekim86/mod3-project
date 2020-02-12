@@ -23,13 +23,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   function renderPhoto(photo) {
-    const photoDiv = document.createElement('div');
-    photoDiv.className = 'photo-thumbnail';
-    photoDiv.dataset.id = photo.id;
-    photoDiv.innerHTML = `
-    <img class='photo-thumbnail' src="${photo.img_url}"/>
-    <br><br>`;
-    photoList.appendChild(photoDiv);
+
+    const photoImgUrl = document.createElement('img');
+    photoImgUrl.className = 'photo-thumbnail';
+    photoImgUrl.src = photo.img_url;
+    photoImgUrl.dataset.id = photo.id;
+
+    
+    photoList.appendChild(photoImgUrl);
   } // closes function renderphoto
 
 
@@ -39,7 +40,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     photoDetail.innerHTML = `
       <h2>${photo.title}</h2>
-      <img src="${photo.img_url}"/>
+      <img class='photo-big' src="${photo.img_url}"/>
       <br>
       <button class='like-btn'>Likes: ${photo.likes}</button>
       <br>
@@ -56,6 +57,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       .then(resp => resp.json())
       .then(photo => {
         showDetails(photo);
+        console.log(photo, 'photoooo')
       });
   } // closes fetchPhoto Details
 
@@ -64,7 +66,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     photoList.addEventListener('click', function (event) {
       if (event.target.className === 'photo-thumbnail') {
-        const photoId = event.target.parentNode.dataset.id;
+        const photoId = event.target.dataset.id;
         fetchPhotoDetails(photoId);
       }
     }); //closes event listener

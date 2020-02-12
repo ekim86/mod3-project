@@ -1,66 +1,38 @@
-/* #card {
-  text-align: center;
-  border: grey solid 1px;
-  padding: 1rem;
-  width: 15rem;
-  height: 25rem;
-  display: inline-grid;
-  margin: 1rem 2rem;
-  box-shadow: 3px 4px #e04b52
-}
-
-
 .photo-thumbnail {
   justify-self: center;
-  height: 12rem;
+  height: 150px;
   width: auto;
-} */
+  text-align: center;
+} 
 
+.photo-big {
+  justify-self: center;
+  height: 400px;
+  width: auto;
+  text-align: center;
+} 
 
-
-#photos {
-  opacity: .88;
+.pictures {
+  width: 600px;
 }
 
-#photos img {
-  width: 30%;
-  float: left;
-  display: block;
-  margin: 2px;
-}
-
-ul {
-  list-style: none;
-  margin: 0px auto;
+img {
   padding: 10px;
-  display: block;
-  max-width: 780px;
+}
+
+h1 {
   text-align: center;
 }
 
-#overlay {
-  background: rgba(0,0,0, .8);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: none;
+.bigImg {
+  height: 630px;
+  width: 500px;
   text-align: center;
+  background-color: blue;
+  background-image: url(https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-037.jpg);
 }
 
-#overlay img {
-  margin: 10% auto 0;
-  width: 550px;
-  border-radius: 5px;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
-
-#photos {
-  width: 100%;
-}
-
-#photo-gallery {
-  width: 100%;
-}
-
-
