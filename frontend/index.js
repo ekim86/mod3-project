@@ -2,8 +2,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
   console.log('Photo App');
   
   const photoList = document.getElementById('photo-list');
-  const photoThumnailArea = document.createElement('div');
-  photoList.appendChild(photoThumnailArea);
+  const photoThumbnailArea = document.createElement('div');
+  photoList.appendChild(photoThumbnailArea);
   const photoDetail = document.getElementById('photo-detail');
   const photoUrl = 'http://localhost:3000/api/v1/photos';
   const allPhotos =[];
@@ -22,7 +22,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       .then((photos) => {
         photos.forEach(photo => {
           allPhotos.push(photo);
-          renderPhoto(photo);
+          // renderPhoto(photo);
+          // deleted so it doesn't show up until signed in
         });
           
       }); //closes fetch
@@ -36,7 +37,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     photoImgUrl.src = photo.img_url;
     photoImgUrl.dataset.id = photo.id;
 
-    photoThumnailArea.appendChild(photoImgUrl);
+    photoThumbnailArea.appendChild(photoImgUrl);
   } // closes function renderphoto
 
 
@@ -115,8 +116,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
       if (event.target.className === 'delete-btn') {
         photoDetail.innerHTML= "";
-        const photoThumbnails = document.getElementsByClassName('photo-thumbnail');
-        Array.from(photoThumbnails).forEach(photo => {
+        // const photoList = document.getElementsByClassName('photo-thumbnail');
+        Array.from(photoList).forEach(photo => {
           if (photo.dataset.id === id) {
             photo.remove();
           }
@@ -134,7 +135,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   } //end of detailbtns
 
-
+  
   function addNewPhoto() {
     const form = document.createElement('form');
     form.className = 'new-photo-form';
@@ -144,6 +145,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <input type="textarea" name="description" placeholder="Description">
       <button class="new-photo-btn" value="submit">Add New Photo</button>
       `;
+
     photoList.prepend(form);
 
     form.addEventListener('submit', function (event) {
@@ -196,7 +198,7 @@ function login() {
         form.dataset.id = user.id;
         console.log(form, "form?");
         const userPhotos = allPhotos.filter(photo => photo.user_id === user.id);
-        photoThumnailArea.innerHTML = "";
+        photoThumbnailArea.innerHTML = "";
         userPhotos.forEach(photo => renderPhoto(photo));
       });
     }
