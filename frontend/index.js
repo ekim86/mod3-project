@@ -146,7 +146,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <button class="new-photo-btn" value="submit">Add New Photo</button>
       `;
 
-    photoList.prepend(form);
+    // photoList.prepend(form);
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -206,6 +206,9 @@ function login() {
   title.appendChild(usernameDiv);
 }
 
+usernameDiv.addEventListener('click', addNewPhoto() => {
+  console.log(usernameDiv, 'hello?')
+});
   
 }); // closes dom
 
