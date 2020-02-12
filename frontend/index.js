@@ -4,8 +4,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const photoList = document.getElementById('photo-list');
   const photoDetail = document.getElementById('photo-detail');
   const photoUrl = 'http://localhost:3000/api/v1/photos';
-  // `${photoUrl}/${photo.id}`
-  // make sure to cd into backend to run rails s
 
   fetchPhoto();
   displayPhotoDetails();
