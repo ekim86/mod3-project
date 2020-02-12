@@ -188,10 +188,10 @@ function login() {
       fetch(`http://localhost:3000/api/v1/users/${username}`)
       .then(resp => resp.json())
       .then(user => {
-        console.log(user, 'user?')
+        // console.log(user, 'user?')
         let form = document.getElementsByClassName('new-photo-form')[0]
         form.dataset.id = user.id
-        console.log(form, "form?")
+        // console.log(form, "form?")
         const userPhotos = allPhotos.filter(photo => photo.user_id === user.id)
         photoThumnailArea.innerHTML = "";
         userPhotos.forEach(photo => renderPhoto(photo))
@@ -200,8 +200,6 @@ function login() {
   })
   title.appendChild(usernameDiv);
 }
-
-
 
   
 }); // closes dom
