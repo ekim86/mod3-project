@@ -206,8 +206,6 @@ function login() {
   title.appendChild(usernameDiv);
 }
 
-
-
   
 }); // closes dom
 
