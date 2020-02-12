@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   function showDetails(photo) {
-    console.log(photo);
+    // console.log(photo);
     photoDetail.dataset.id = photo.id;
 
     photoDetail.innerHTML = `
@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       .then(resp => resp.json())
       .then(photo => {
         showDetails(photo);
-        console.log(photo, 'photoooo')
+        // console.log(photo, 'photoooo')
       });
   } // closes fetchPhoto Details
 
@@ -133,11 +133,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   } //end of detailbtns
 
-  // find ul class
-
 
   function addNewPhoto() {
     const form = document.createElement('form');
+    form.className = 'new-photo-form'
     form.innerHTML = `
       <input type="text" name="title" placeholder="Photo Title">
       <input type=text" name="img_url" placeholder="Photo Link">
@@ -151,7 +150,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
       const title = event.target.title.value;
       const imgUrl = event.target.img_url.value;
       const description = event.target.description.value;
-      // const title = form.title.value
 
       fetch('http://localhost:3000/api/v1/photos', {
         method: "POST",
@@ -178,6 +176,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function login() {
   const title = document.querySelector('#title');
   const usernameDiv = document.createElement('div');
+
   usernameDiv.innerHTML = `
   <input type="text" class='login' name="username" placeholder="Username">
   <button class='login-btn'>Login</button>
@@ -186,11 +185,13 @@ function login() {
     if (event.target.className === 'login-btn') {
       let username = event.target.parentNode.children[0].value;
 
-      //then we want to show that user's pictures
       fetch(`http://localhost:3000/api/v1/users/${username}`)
       .then(resp => resp.json())
       .then(user => {
         console.log(user, 'user?')
+        let form = document.getElementsByClassName('new-photo-form')[0]
+        form.dataset.id = user.id
+        console.log(form, "form?")
         const userPhotos = allPhotos.filter(photo => photo.user_id === user.id)
         photoThumnailArea.innerHTML = "";
         userPhotos.forEach(photo => renderPhoto(photo))
