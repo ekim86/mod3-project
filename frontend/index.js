@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const photoDetail = document.getElementById('photo-detail');
   const photoUrl = 'http://localhost:3000/api/v1/photos';
   const allPhotos = [];
+  let currentUser
 
   fetchPhoto();
   displayPhotoDetails();
@@ -118,20 +119,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
       } // closes save if
 
       if (event.target.className === 'delete-btn') {
-        photoDetail.innerHTML = "";
-        // const photoList = document.getElementsByClassName('photo-thumbnail');
-        Array.from(photoList).forEach(photo => {
-          if (photo.dataset.id === id) {
-            photo.remove();
-          }
-        });
+        
         fetch(`${photoUrl}/${id}`, {
           method: "DELETE",
           headers: {
             "content-type": "application/json",
             accept: "application/json"
           }
-        });
+        })
+        .then(resp => resp.json())
+        .then(() => {
+          photoDetail.innerHTML = "";
+          const thumbNail = photoThumbnailArea.querySelector(`[data-id='${id}']`);
+          thumbNail.remove();
+        }); //closes fetch delete
       } // closes delete if
 
     });  //end of listener
@@ -194,6 +195,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     usernameDiv.addEventListener('click', function (event) {
       if (event.target.className === 'login-btn') {
         let username = event.target.parentNode.children[0].value;
+        currentUser = username
+
+        
+
+        console.log(currentUser)
 
         fetch(`http://localhost:3000/api/v1/users/${username}`)
           .then(resp => resp.json())
