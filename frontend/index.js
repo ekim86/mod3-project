@@ -14,6 +14,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   detailBtns();
   login();
 
+  
   function fetchPhoto() {
     fetch(`${photoUrl}`)
       .then((response) => {
@@ -141,7 +142,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     form.className = 'new-photo-form';
     form.innerHTML = `
       <input type="text" name="title" placeholder="Photo Title">
-      <input type=text" name="img_url" placeholder="Photo Link">
+      <input type="text" name="img_url" placeholder="Photo Link">
       <input type="textarea" name="description" placeholder="Description">
       <button class="new-photo-btn" value="submit">Add New Photo</button>
       `;
