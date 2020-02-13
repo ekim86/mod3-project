@@ -1,8 +1,8 @@
 
 
 html { 
-  font-family: Arial, Helvetica, sans-serif;
   color: rgb(60, 55, 87);
+  font-family: 'Playfair Display', serif;
 }
 
 body {
@@ -10,6 +10,7 @@ body {
   /* background-size: cover; */
   background: url("https://i.pinimg.com/originals/e4/5f/54/e45f54e2cc5516e2210c34453db5ab6e.jpg") no-repeat fixed center;
   background-size: cover;
+  font-family: 'Playfair Display', serif;
 }
 
 textarea {
@@ -19,7 +20,8 @@ textarea {
   /* max-height: 110px; */
   padding: 7px;
   font-size: 12px;
-  
+  font-family: 'Playfair Display', serif;
+
   background: transparent;
   outline: none;
   text-align: center;
@@ -39,6 +41,7 @@ textarea:hover {
   background: rgb(238, 241, 246);
   color: #9197AE;
   font-size: 12px;
+  font-family: 'Playfair Display', serif;
 }
 
 
@@ -49,6 +52,7 @@ input {
   background-color: white;
   color: black;
   font-size: 12px;
+  font-family: 'Playfair Display', serif;
 }
 
 input[type=text]:focus {
@@ -56,6 +60,7 @@ input[type=text]:focus {
   background-color: white;
   color: 839788;
   font-size: 12px;
+  font-family: 'Playfair Display', serif;
 }
 
 input[type=textarea]:focus {
@@ -63,13 +68,15 @@ input[type=textarea]:focus {
   background-color: white;
   color: black;
   font-size: 12px;
+  font-family: 'Playfair Display', serif;
 }
 
 .photo-thumbnail {
   justify-self: center;
-  height: 170px;
-  width: auto;
+  height: 100px;
+  width: 100px;
   text-align: center;
+  font-family: 'Playfair Display', serif;
 } 
 
 .photo-big {
@@ -77,6 +84,7 @@ input[type=textarea]:focus {
   height: 400px;
   width: auto;
   text-align: center;
+  font-family: 'Playfair Display', serif;
 } 
 
 img {
@@ -85,8 +93,9 @@ img {
 
 h1 {
 
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display';
   font-size: 40px;
+  /* font-style: italic; */
   /* display: flex;
   justify-content: center;
   align-items: center; */
@@ -100,11 +109,13 @@ h1 {
   height: 630px;
   width: 500px;
   text-align: center;
+  font-family: 'Playfair Display', serif;
 }
 
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  font-family: 'Playfair Display', serif;
 }
 
 #button {
@@ -112,6 +123,7 @@ h1 {
   background: transparent;
   text-transform: capitalize;
   margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
   
   &:not(:last-child) {
     margin-right:1rem;
@@ -125,7 +137,7 @@ h1 {
 #raise {
   color: #494d71;
   border: 2px solid #494d71;
-  
+  font-family: 'Playfair Display', serif;
   transition: all .3s;
   
   &:hover {
@@ -140,6 +152,7 @@ h1 {
 button {  
   color: var(--color);
   transition: 0.25s;
+  font-family: 'Playfair Display', serif;
   
   &:hover,
   &:focus { 
@@ -158,6 +171,7 @@ button {
   margin: 0.25em;
   padding: 1em 1em;
   font-weight: 200;
+  font-family: 'Playfair Display', serif;
 }
 
 
