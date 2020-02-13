@@ -18,6 +18,7 @@ textarea {
   height: 40px;
   /* max-height: 110px; */
   padding: 7px;
+  font-size: 12px;
   
   background: transparent;
   outline: none;
@@ -37,6 +38,7 @@ textarea {
 textarea:hover {
   background: rgb(238, 241, 246);
   color: #9197AE;
+  font-size: 12px;
 }
 
 
@@ -46,18 +48,21 @@ input {
   /* #839788; */
   background-color: white;
   color: black;
+  font-size: 12px;
 }
 
 input[type=text]:focus {
   outline: 3px solid #839788;
   background-color: white;
   color: 839788;
+  font-size: 12px;
 }
 
 input[type=textarea]:focus {
   outline: 3px solid #839788;
   background-color: white;
   color: black;
+  font-size: 12px;
 }
 
 .photo-thumbnail {
