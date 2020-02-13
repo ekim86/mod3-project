@@ -143,45 +143,48 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   function addNewPhoto() {
-    const form = document.createElement('form');
-    form.className = 'new-photo-form';
-    form.innerHTML = `
-      <input type="text" name="title" placeholder="Photo Title">
-      <input type="text" name="img_url" placeholder="Photo Link">
-      <input type="textarea" name="description" placeholder="Description">
-      <button class="new-photo-btn" value="submit">Add New Photo</button>
-      `;
-    photoList.prepend(form);
-    
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-    
-        const title = event.target.title.value;
-        const imgUrl = event.target.img_url.value;
-        const description = event.target.description.value;
-        const userId = event.target.dataset.id;
-        console.log(userId, 'userid');
-    
-        fetch('http://localhost:3000/api/v1/photos', {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            accept: "application/json"
-          },
-          body: JSON.stringify({
-            "user_id": userId,
-            "title": title,
-            "img_url": imgUrl,
-            "description": description,
-            "likes": 0
+    if(!photoList.querySelector('form')) {
+      const form = document.createElement('form');
+      form.className = 'new-photo-form';
+      form.innerHTML = `
+        <input type="text" name="title" placeholder="Photo Title">
+        <input type="text" name="img_url" placeholder="Photo Link">
+        <input type="textarea" name="description" placeholder="Description">
+        <button class="new-photo-btn" value="submit">Add New Photo</button>
+        `;
+      photoList.prepend(form);
+      
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+      
+          const title = event.target.title.value;
+          const imgUrl = event.target.img_url.value;
+          const description = event.target.description.value;
+          const userId = event.target.dataset.id;
+          console.log(userId, 'userid');
+      
+          fetch('http://localhost:3000/api/v1/photos', {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              accept: "application/json"
+            },
+            body: JSON.stringify({
+              "user_id": userId,
+              "title": title,
+              "img_url": imgUrl,
+              "description": description,
+              "likes": 0
+            })
           })
-        })
-          .then(resp => resp.json())
-          .then(photo => {
-    
-            renderPhoto(photo);
-          }); // pessimistic rendering 
-      }); //end of new form
+            .then(resp => resp.json())
+            .then(photo => {
+      
+              renderPhoto(photo);
+            }); // pessimistic rendering 
+        }); //end of new form
+
+    }
 
   } // end of addNewPhoto
 
