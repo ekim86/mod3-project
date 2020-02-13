@@ -18,6 +18,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   detailBtns();
   login();
 
+  
   function fetchPhoto() {
     fetch(`${photoUrl}`)
       .then((response) => {
@@ -57,7 +58,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <button class='like-btn'>Likes: ${photo.likes}</button>
       <br>
       <br>
-      Description:<textarea>${photo.description}</textarea><br><Br>
+      Description:<br><br><textarea>${photo.description}</textarea><br><Br>
       <button class='save-btn'>Save Description</button><br>
       <button class='delete-btn'>Delete</button>
     `;
@@ -145,7 +146,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     form.className = 'new-photo-form';
     form.innerHTML = `
       <input type="text" name="title" placeholder="Photo Title">
-      <input type=text" name="img_url" placeholder="Photo Link">
+      <input type="text" name="img_url" placeholder="Photo Link">
       <input type="textarea" name="description" placeholder="Description">
       <button class="new-photo-btn" value="submit">Add New Photo</button>
       `;
@@ -197,7 +198,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let username = event.target.parentNode.children[0].value;
         currentUser = username
 
-        
+
 
         console.log(currentUser)
 
