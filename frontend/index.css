@@ -1,16 +1,61 @@
+
+
 html { 
-  background-image: linear-gradient(45deg, rgba(194, 233, 221, 0.5) 1%, rgba(104, 119, 132, 0.5) 100%), linear-gradient(-45deg, #494d71 0%, rgba(217, 230, 185, 0.5) 80%);
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
+  color: rgb(60, 55, 87);
 }
 
-input[type=text]:focus {
-  border: 3px solid rgb(211, 65, 187);
+body {
+  /* background-image: linear-gradient(45deg, rgba(194, 233, 221, 0.5) 1%, rgba(104, 119, 132, 0.5) 100%), linear-gradient(-45deg, #494d71 0%, rgba(217, 230, 185, 0.5) 80%); */
+  /* background-size: cover; */
+  background: url("https://i.pinimg.com/originals/e4/5f/54/e45f54e2cc5516e2210c34453db5ab6e.jpg") no-repeat fixed center;
+  background-size: cover;
+}
+
+textarea {
+  width: 400px;
+  /* max-width: 470px; */
+  height: 40px;
+  /* max-height: 110px; */
+  padding: 7px;
+  
+  background: transparent;
+  outline: none;
+  text-align: center;
+  color: #494d71 ;
+  /* font-family: 'Lato', sans-serif; */
+  font-size: 12px;
+  
+  border: solid 1px #494d71;
+  
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+
+textarea:hover {
+  background: rgb(238, 241, 246);
+  color: #9197AE;
+}
+
+
+input {
+  padding: 10px 20px;
+  border: 3px solid #9EA3B0;
+  /* #839788; */
   background-color: white;
   color: black;
 }
+
+input[type=text]:focus {
+  outline: 3px solid #839788;
+  background-color: white;
+  color: 839788;
+}
+
 input[type=textarea]:focus {
-  border: 3px solid rgb(211, 65, 187);
+  outline: 3px solid #839788;
   background-color: white;
   color: black;
 }
@@ -47,3 +92,60 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+#button {
+  padding: .8rem 2rem;
+  background: transparent;
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+  
+  &:not(:last-child) {
+    margin-right:1rem;
+  }
+  
+  &:hover {
+    cursor:pointer;
+  }
+}
+
+#raise {
+  color: #494d71;
+  border: 2px solid #494d71;
+  
+  transition: all .3s;
+  
+  &:hover {
+    transform: translatey(-.5rem);
+    border: 2px solid #ffffff;
+    color:#ffffff;
+    box-shadow: 0px 6px 8px -2px #000000;
+  }
+}
+
+
+button {  
+  color: var(--color);
+  transition: 0.25s;
+  
+  &:hover,
+  &:focus { 
+    border-color: var(--hover);
+    color: #fff;
+  }
+}
+
+button {
+  background: none;
+  color: rgb(90, 105, 117);
+  border: 1.5px solid;
+  font: inherit;
+  font-size: 12px;
+  line-height: 0.25;
+  margin: 0.25em;
+  padding: 1em 1em;
+  font-weight: 200;
+}
+
+
+
+

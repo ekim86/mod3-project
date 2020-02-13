@@ -54,7 +54,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       <button class='like-btn'>Likes: ${photo.likes}</button>
       <br>
       <br>
-      Description:<textarea>${photo.description}</textarea><br><Br>
+      Description:</br>
+      <textarea>${photo.description}</textarea><br><Br>
       <button class='save-btn'>Save Description</button><br>
       <button class='delete-btn'>Delete</button>
     `;
@@ -187,7 +188,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const usernameDiv = document.createElement('div');
     usernameDiv.innerHTML = `
   <input type="text" class='login' name="username" placeholder="Username">
-  <button class='login-btn'>Login</button>
+  <button class='login-btn' id='button raise'>Login</button>
+  
+  
   `;
     usernameDiv.addEventListener('click', function (event) {
       if (event.target.className === 'login-btn') {
