@@ -182,7 +182,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
       
               renderPhoto(photo);
             }); // pessimistic rendering 
+            form.reset()
         }); //end of new form
+  
 
     }
 
